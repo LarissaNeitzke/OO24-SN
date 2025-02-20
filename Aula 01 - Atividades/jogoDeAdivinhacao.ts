@@ -4,6 +4,7 @@ maior ou menor que o número aleatório. O jogo termina quando o usuário acerta
 O programa deve mostrar o número de tentativas utilizadas pelo
 usuário.*/
 
+const readline = require('readline-sync');
 
 function jogoDeAdivinhacao(): void {
     /*NÚMERO ALEATÓRIO ENTRE 1 E 100*/
@@ -19,7 +20,7 @@ function jogoDeAdivinhacao(): void {
     /*REPETIR ATÉ ACERTAR O NÚMERO*/
     while (!acertou) {
         /*TENTATIVA*/
-        let tentativa: string = prompt("Digite um número entre 1 e 100:");
+        let tentativa: number = readline.questionInt("Digite um numero entre 1 e 100:");
         /*TENTATIVA EM NÚMERO*/
         let numeroTentativa: number = Number(tentativa);
         
