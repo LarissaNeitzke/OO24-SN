@@ -5,12 +5,12 @@ Imprima os resultados no console.*/
 let num1: number = 4
 let num2: number = 8
 
-function sum(num1:number, num2:number):number {return num1 + num2}
-function sub(num1:number, num2:number):number {return num1 - num2}
-function mul(num1:number, num2:number):number {return num1 * num2}
-function div(num1:number, num2:number):number {return num1 / num2}
+let soma: number=(num1 + num2)
+let sub: number=(num1 - num2)
+let mul: number=(num1 * num2)
+let div: number=(num1 / num2)
 
-console.log(sum)
+console.log(soma)
 console.log(sub)
 console.log(mul)
 console.log(div)
