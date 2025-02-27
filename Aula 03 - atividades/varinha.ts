@@ -2,32 +2,54 @@
   Crie os métodos GETTERS e SETTERS.
   Crie um método "exibirDetalhes", como "Varinha de madeira de [madeira], núcleo de [núcleo] e tamanho [tamanho]".*/
 
-  export class varinha{
-    //ATRIBUTOS
-    name: string;
-    weight: number;
+  export class Varinha {
+    //Atributos privados
+    private madeira: string;
+    private nucleo: string;
+    private tamanho: number;
 
-    //CONSTRUCTOR
-    /*TODA CLASSE TEM UM CONSTRUTOR. MESMO SE NÃO INFORMAR, ELE CRIA.*/
-    constructor(nameCat: string, weightCat: number){
-        this.name = nameCat
-        this.weight = weightCat
+    //Constructor
+    constructor(madeira: string, nucleo: string, tamanho: number) {
+        this.madeira = madeira;
+        this.nucleo = nucleo;
+        this.tamanho = tamanho;
     }
 
-    //MÉTODOS
-    meow(): void{
-        console.log("Meow Meow")
+    //Getter e Setter para madeira
+    public getMadeira(): string {
+        return this.madeira;
     }
-    eat(quantity: number): void{
-    console.log("The cat has eaten " + quantity)
+
+    public setMadeira(madeira: string): void {
+        this.madeira = madeira;
     }
-    
+
+    //Getter e Setter para núcleo
+    public getNucleo(): string {
+        return this.nucleo;
+    }
+
+    public setNucleo(nucleo: string): void {
+        this.nucleo = nucleo;
+    }
+
+    //Getter e Setter para tamanho
+    public getTamanho(): number {
+        return this.tamanho;
+    }
+
+    public setTamanho(tamanho: number): void {
+        this.tamanho = tamanho;
+    }
+
+    //Para exibir detalhes da varinha
+    public exibirDetalhes(): void {
+        console.log(`Varinha de madeira de ${this.madeira}, núcleo de ${this.nucleo} e tamanho ${this.tamanho} cm.`);
+    }
 }
 
-const cat1 = new cat ("Fofo", 4)
-cat1.meow()
-cat1.eat(200)
+const varinha1 = new Varinha("Carvalho", "Pena de Fenix", 32);
+varinha1.exibirDetalhes();
 
-const cat2 = new cat ("Lili", 5)
-cat2.meow()
-cat2.eat(150)
+const varinha2 = new Varinha("Salgueiro", "Fibra de Coração de Dragão", 27);
+varinha2.exibirDetalhes();
