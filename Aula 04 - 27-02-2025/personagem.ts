@@ -2,7 +2,7 @@
 2. Crie uma classe personagem com atributos como vida, forca e inventario.
 */
 
-export class personagem {
+export class Personagem {
     //Atributos
     private vida: number;
     private forca: number;
@@ -27,20 +27,24 @@ export class personagem {
     public setInventario(inventarioRecebido: string[]): void {
         this.inventario = inventarioRecebido
     }
-*********************************************************************************
-    public getTipo(): string {
-        return this.tipo;
+
+    public getVida(): number {
+        return this.vida;
     }
 
-    public getDurabilidade(): number {
-        return this.durabilidade;
+    public getForca(): number {
+        return this.forca;
     }
 
-    public infoBlocoDeMadeira(): void {
-        console.log(`O tipo do Bloco de Madeira é ${this.tipo} com durabilidade de ${this.durabilidade}.`);
+    public getInventario(): string[] {
+        return this.inventario;
+    }
+
+    public infoPersonagem(): void {
+        console.log(`A vida do personagem é de ${this.vida} e a força é de ${this.forca}. A lista de itens que o personagem possui é: ${this.inventario}.`);
     }
 }
 
-const blocoDeMadeira1 = new blocoDeMadeira("Carvalho", 3);
-blocoDeMadeira1.infoBlocoDeMadeira()
+const personagem1 = new Personagem(8, 10, ["Machado", "Poção", "Espada"]);
+personagem1.infoPersonagem()
 

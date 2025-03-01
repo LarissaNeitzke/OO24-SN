@@ -2,7 +2,7 @@
 1. Crie uma classe blocoDeMadeira com atributos como tipo(carvalho, madeira, etc) e durabilidade.
 */
 
-export class blocoDeMadeira {
+export class BlocoDeMadeira {
     //Atributos
     private tipo: string;
     private durabilidade: number;
@@ -35,6 +35,9 @@ export class blocoDeMadeira {
     }
 }
 
-const blocoDeMadeira1 = new blocoDeMadeira("Carvalho", 3);
+const blocoDeMadeira1 = new BlocoDeMadeira("Carvalho", 3);
 blocoDeMadeira1.infoBlocoDeMadeira()
+
+const blocoDeMadeira2 = new BlocoDeMadeira("Pinheiro", 2);
+blocoDeMadeira2.infoBlocoDeMadeira()
 
