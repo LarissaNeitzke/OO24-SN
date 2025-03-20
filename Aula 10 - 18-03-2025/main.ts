@@ -1,82 +1,51 @@
 import { Animal } from "./Animal";
-import { Mamifero } from "./Mamifero";
-import { Recurso } from "./Recursos";
+import { Mamifero } from "./Mamifero";  // Todos os mamíferos instanciados se encontram no arquivo Mamifero.
+import { Recurso } from "./Recurso";    // Todos os recursos instanciados se encontram no arquivo Recurso.
 
-const mamifero1 = new Mamifero(
-    "Protagonista",                                 //nome
-    "Capivara",                                     //espécie
-    true,                                           //sede
-    true,                                           //fome
-    "Herbívoro",                                    //alimentacao 
-    "Explorar a vegetação procurando ao arredor",   //habito
-    "Muito",                                        //qtdePelos
-    4,                                              //qtdeMamas
-    "Ahn Ahn"                                       //Onomatopéia
-);
-const mamifero2 = new Mamifero(
-    "Pão",
-    "Cachorro", 
-    true, 
-    false, 
-    "Onívoro", 
-    "Correr pelo gramado querendo brincar", 
-    "Muito", 
-    8,
-    "Au Au"
-);
-const mamifero3 = new Mamifero(
-    "Precioso", 
-    "Lêmure", 
-    false, 
-    true, 
-    "Onívoro", 
-    "Pular de árvore em árvore", 
-    "Pouco", 
-    4,
-    "Hiii-Hiii"
-);
-const mamifero4 = new Mamifero(
-    "Flow", 
-    "Gato", 
-    false, 
-    true, 
-    "Carnívoro", 
-    "Explorar", 
-    "Muito", 
-    8,
-    "Meow Meow"
-);
+console.log("========== [FUNÇÃO INTERAGIR] ==========")
+function interagir(animalRecebido1: Animal, animalRecebido2: Animal):void {     // Polimorfose
+    console.log(`${animalRecebido1.getNome()} interagiu com ${animalRecebido2.getNome()}:`);
+    console.log(animalRecebido1.emitirSom());
+    console.log(animalRecebido2.emitirSom(), '\n');
 
+    animalRecebido1.buscarRecurso();
+    animalRecebido2.buscarRecurso();
+}
+interagir(Mamifero.getMamiferos()[0], Mamifero.getMamiferos()[1]);
 
-const recurso1 = new Recurso ("Água", "beber", "vários litros de")
-const recurso2 = new Recurso ("Bananas", "comer", "muitas")
-const recurso3 = new Recurso ("Espelho", "se olhar", "em um")
-const recurso4 = new Recurso ("Galho", "brincar", "com um")
-const recurso5 = new Recurso ("Peixes", "comer", "alguns")
+// Desafio
+function indexAleatorio(listaRecebida: Mamifero[] | Recurso[]) {
+    return Math.floor(Math.random() * listaRecebida.length);
+}
 
+function acoes(mamiferos:Mamifero[]) {
+    const recursos:Recurso[] = Recurso.getRecursos();
+    mamiferos[indexAleatorio(mamiferos)].usarRecurso(recursos[indexAleatorio(recursos)]);
 
-let recursos = [recurso1, recurso2, recurso3, recurso4, recurso5]
+    mamiferos[indexAleatorio(mamiferos)].mover();
 
-// Exemplo de um tipo de polimorfose
+    mamiferos[indexAleatorio(mamiferos)].amamentar();
 
-function interagir(animalRecebido1: Animal, animalRecebido2: Animal) {
-    const buscarRecurso1 = animalRecebido1.buscarRecurso(recursos)
-    const buscarRecurso2 = animalRecebido2.buscarRecurso(recursos)
+    mamiferos[indexAleatorio(mamiferos)].mudarPelo();
+}
 
-    console.log(`${animalRecebido1} encontrou ${animalRecebido2}`)
-    animalRecebido1.usarRecurso(recurso1)
-
-    if (buscarRecurso1 || buscarRecurso2) {
-        console.log("Inventário atual dos animais:"), console.table(Animal.getInventario());
+console.log("============ [FUNÇÃO SIMULAR] ============");
+function simular(qtde:number = 10) {
+    for (let i=0; i < qtde; i++) {
+        console.log(`=============== ITERAÇÃO ${i+1} ===============`);
+        
+        const mamiferos:Mamifero[] = Mamifero.getMamiferos();
+        const animalAleatorio1:Mamifero = mamiferos[indexAleatorio(mamiferos)];
+        let animalAleatorio2:Mamifero = mamiferos[indexAleatorio(mamiferos)];
+        while (animalAleatorio1 == animalAleatorio2) {
+            animalAleatorio2 = mamiferos[indexAleatorio(mamiferos)];
+        }
+    
+        interagir(animalAleatorio1, animalAleatorio2);
+        acoes(mamiferos);
     }
 }
+simular(5);
 
-for (let i=0; i < 10; i++) {
-    interagir(mamifero1, mamifero2);
-}
-
-
-mamifero1.amamentar();
-mamifero3.emitirSomMamifero();
-mamifero2.mudarPelo();
-mamifero1.mover();
+console.log(`========== RECURSOS OBTIDOS ==========`);
+console.table(Animal.getInventario(), ["nome"]);
