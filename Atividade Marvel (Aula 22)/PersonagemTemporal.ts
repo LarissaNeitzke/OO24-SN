@@ -10,6 +10,14 @@ export class PersonagemTemporal {
         this.assinaturaTemporal = assinaturaTemporal
     }
 
+    public getNome():string{
+        return this.nome
+    }
+
+    public getUniverso():string{
+        return this.universo
+    }
+
     public getAssinaturaTemporal():number{
         return this.assinaturaTemporal
     }
